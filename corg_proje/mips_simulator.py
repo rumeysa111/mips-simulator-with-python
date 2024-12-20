@@ -88,6 +88,26 @@ class MIPS_Simulator:
             base = self.parse_register(base[:-1])  # Parantezi kaldır
             address = self.registers[base] + offset
             self.store_word(address, self.registers[rt])
+        elif opcode == "j":
+            target_address = int(parts[1])
+            self.pc = target_address
+        elif opcode == "jal":
+            target_address = int(parts[1])
+            self.registers[31] = self.pc + 4  # $ra (return address) kaydet
+            self.pc = target_address
+        elif opcode == "jr":
+            register = self.parse_register(parts[1])
+            self.pc = self.registers[register]
+        elif opcode == "sll":
+            rd = self.parse_register(parts[1])
+            rt = self.parse_register(parts[2])
+            shamt = int(parts[3])
+            self.registers[rd] = self.registers[rt] << shamt
+        elif opcode == "srl":
+            rd = self.parse_register(parts[1])
+            rt = self.parse_register(parts[2])
+            shamt = int(parts[3])
+            self.registers[rd] = self.registers[rt] >> shamt
 
         self.pc += 4  # Program Counter'ı bir sonraki talimata taşı
 
@@ -145,6 +165,40 @@ class MIPS_Simulator:
                 opcode_value = 43  # sw
 
             instruction = (opcode_value << 26) | (base << 21) | (rt << 16) | offset
+            return format(instruction, '032b')
+
+        elif opcode == "j":
+            # J-type komutları (j)
+            target_address = int(parts[1])
+            instruction = (2 << 26) | (target_address & 0x03FFFFFF)  # Mask for 26 bits
+            return format(instruction, '032b')
+
+        elif opcode == "jal":
+            # J-type komutları (jal)
+            target_address = int(parts[1])
+            instruction = (3 << 26) | (target_address & 0x03FFFFFF)  # Mask for 26 bits
+            return format(instruction, '032b')
+
+        elif opcode == "jr":
+            # R-type komutları (jr)
+            rs = self.parse_register(parts[1])
+            instruction = (0 << 26) | (rs << 21) | (0 << 16) | (0 << 11) | (0 << 6) | 8  # func = 8 for jr
+            return format(instruction, '032b')
+
+        elif opcode == "sll":
+            # R-type komutları (sll)
+            rd = self.parse_register(parts[1])
+            rt = self.parse_register(parts[2])
+            shamt = int(parts[3])
+            instruction = (0 << 26) | (0 << 21) | (rt << 16) | (rd << 11) | (shamt << 6) | 0
+            return format(instruction, '032b')
+
+        elif opcode == "srl":
+            # R-type komutları (srl)
+            rd = self.parse_register(parts[1])
+            rt = self.parse_register(parts[2])
+            shamt = int(parts[3])
+            instruction = (0 << 26) | (0 << 21) | (rt << 16) | (rd << 11) | (shamt << 6) | 2
             return format(instruction, '032b')
 
         else:
