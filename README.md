@@ -1,3 +1,5 @@
+Tabii, README dosyanızın Instructions kısmını düzenleyeyim:
+
 # MIPS Simulator with GUI
 
 This project is a MIPS simulator developed to simulate MIPS Assembly instructions. Users can input a series of MIPS instructions and execute them step by step. The project is a desktop application built using the `tkinter` library, offering a user-friendly graphical interface.
@@ -17,25 +19,28 @@ This project is a MIPS simulator developed to simulate MIPS Assembly instruction
 - Tkinter library (included with Python)
 - Additional libraries: `messagebox` (a part of Tkinter, no installation required)
 
-- Supported Instructions
+## Supported Instructions
+
 This simulator supports the following MIPS instructions:
 
-R-Type Instructions:
-add
-sub
-and
-or
-slt
-sll
-srl
-jr
-I-Type Instructions:
-addi
-lw
-sw
-J-Type Instructions:
-j
-jal
+### R-Type Instructions:
+- `add`
+- `sub`
+- `and`
+- `or`
+- `slt`
+- `sll`
+- `srl`
+- `jr`
+
+### I-Type Instructions:
+- `addi`
+- `lw`
+- `sw`
+
+### J-Type Instructions:
+- `j`
+- `jal`
 
 ## Installation
 
@@ -53,3 +58,6 @@ Follow these steps to run the simulator:
 3. Run the program with the following command:
    ```bash
    python mips_simulator_gui.py
+   ```
+
+Bu şekilde, README dosyanızın Instructions kısmı daha düzenli ve okunabilir hale geldi.
