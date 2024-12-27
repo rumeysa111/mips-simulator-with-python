@@ -60,4 +60,4 @@ Follow these steps to run the simulator:
    python mips_simulator_gui.py
    ```
 
-Bu şekilde, README dosyanızın Instructions kısmı daha düzenli ve okunabilir hale geldi.
+
