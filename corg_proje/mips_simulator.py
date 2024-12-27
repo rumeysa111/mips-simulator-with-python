@@ -51,7 +51,7 @@ class MIPS_Simulator:
 
         # Talimatı instruction memory'e kaydet
         machine_code = self.machine_code(instruction)
-        self.instruction_memory[self.pc:self.pc+4] = machine_code.encode('utf-8')
+        self.instruction_memory[self.pc:self.pc + 4] = machine_code.encode('utf-8')
 
         # Talimatı çalıştır
         if opcode == "add":
@@ -108,6 +108,27 @@ class MIPS_Simulator:
             rt = self.parse_register(parts[2])
             shamt = int(parts[3])
             self.registers[rd] = self.registers[rt] >> shamt
+
+        elif opcode == "beq":
+            rs, rt, offset = parts[1], parts[2], int(parts[3])
+            rs = self.parse_register(rs)
+            rt = self.parse_register(rt)
+            if self.registers[rs] == self.registers[rt]:
+                target_address = self.pc + ((offset + 1) * 4)
+                self.pc = target_address  # Update program counter to branch target
+                return  # Skip the rest of the code and jump to the target
+
+        elif opcode == "bne":
+            rs, rt, offset = parts[1], parts[2], int(parts[3])
+            rs = self.parse_register(rs)
+            rt = self.parse_register(rt)
+
+            # Eğer register'lar eşit değilse, dallan
+            if self.registers[rs] != self.registers[rt]:
+                # Hedef adresi hesapla
+                target_address = self.pc + ((offset + 1) * 4)
+                self.pc = target_address  # PC'yi dallanma adresine ayarla
+                return  # Daha fazla işlem yapma
 
         self.pc += 4  # Program Counter'ı bir sonraki talimata taşı
 
@@ -199,6 +220,26 @@ class MIPS_Simulator:
             rt = self.parse_register(parts[2])
             shamt = int(parts[3])
             instruction = (0 << 26) | (0 << 21) | (rt << 16) | (rd << 11) | (shamt << 6) | 2
+            return format(instruction, '032b')
+
+        elif opcode == "beq":
+            # I-type komutları (beq)
+            rs, rt, offset = parts[1], parts[2], int(parts[3])
+            rs = self.parse_register(rs)
+            rt = self.parse_register(rt)
+
+            # Makine kodunu 32-bitlik integer olarak oluştur
+            instruction = (4 << 26) | (rs << 21) | (rt << 16) | offset
+            return format(instruction, '032b')
+
+        elif opcode == "bne":
+            # I-type komutları (bne)
+            rs, rt, offset = parts[1], parts[2], int(parts[3])
+            rs = self.parse_register(rs)
+            rt = self.parse_register(rt)
+
+            # Makine kodunu 32-bitlik integer olarak oluştur
+            instruction = (5 << 26) | (rs << 21) | (rt << 16) | offset
             return format(instruction, '032b')
 
         else:
