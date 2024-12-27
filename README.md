@@ -17,6 +17,26 @@ This project is a MIPS simulator developed to simulate MIPS Assembly instruction
 - Tkinter library (included with Python)
 - Additional libraries: `messagebox` (a part of Tkinter, no installation required)
 
+- Supported Instructions
+This simulator supports the following MIPS instructions:
+
+R-Type Instructions:
+add
+sub
+and
+or
+slt
+sll
+srl
+jr
+I-Type Instructions:
+addi
+lw
+sw
+J-Type Instructions:
+j
+jal
+
 ## Installation
 
 ### 1. Install Python
