@@ -2,7 +2,7 @@
 # MIPS Simulator with GUI
 
 This project is a MIPS simulator developed to simulate MIPS Assembly instructions. Users can input a series of MIPS instructions and execute them step by step. The project is a desktop application built using the `tkinter` library, offering a user-friendly graphical interface.
-![Uploading Screenshot 2024-12-27 144725.png…]()
+
 ## Features
 
 
