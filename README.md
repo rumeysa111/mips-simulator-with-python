@@ -13,7 +13,7 @@ This project is a MIPS simulator developed to simulate MIPS Assembly instruction
 
 ## Requirements
 
-- Python 3.x
+- Python 
 - Tkinter library (included with Python)
 - Additional libraries: `messagebox` (a part of Tkinter, no installation required)
 
