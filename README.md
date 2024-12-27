@@ -20,7 +20,7 @@ This project is a MIPS simulator developed to simulate MIPS Assembly instruction
 ## Installation
 
 ### 1. Install Python
-Ensure that Python 3.x is installed on your system. You can download Python from [here](https://www.python.org/downloads/).
+Ensure that Python is installed on your system. You can download Python from [here](https://www.python.org/downloads/).
 
 ### 2. Required Libraries
 The project only uses Python's standard libraries, so no additional libraries need to be installed.
