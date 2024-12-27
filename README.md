@@ -1,4 +1,3 @@
-Tabii, README dosyanızın Instructions kısmını düzenleyeyim:
 
 # MIPS Simulator with GUI
 
