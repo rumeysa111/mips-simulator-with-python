@@ -58,7 +58,7 @@ Follow these steps to run the simulator:
 2. Open a terminal or command prompt and navigate to the project directory.
 3. Run the program with the following command:
    ```bash
-   python mips_simulator_gui.py
+   python mips_simulator.py
    ```
 
 
